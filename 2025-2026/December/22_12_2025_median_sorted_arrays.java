@@ -1,26 +1,22 @@
 class Solution {
-    public String longestCommonPrefix(String[] strs) {
-        if (strs == null || strs.length == 0) {
-            return "empty";
-        }
+    public double findMedianSortedArrays(int[] num1, int[] num2) {
+    
+    int[] merged = new int[num1.length + num2.length];
+    System.arraycopy(num1,0,merged,0,num1.length);
+    System.arraycopy(num2,0,merged,num1.length,num2.length);
 
-        StringBuilder commonprefix = new StringBuilder();
+    Arrays.sort(merged);
+    double median = 0;
+    int n = merged.length;
+    if(merged.length % 2 == 0){
+        median = (merged[n/2 - 1] + merged[n/2]) / 2.0;
 
-        
-        for (int i = 0; i < strs[0].length(); i++) {
-            char c = strs[0].charAt(i);
+    }
+    else 
+        median = merged[(n-1)/2];
 
-            
-            for (int j = 1; j < strs.length; j++) {
-                if (i >= strs[j].length() || strs[j].charAt(i) != c) {
-                    return commonprefix.toString(); 
-                }
-            }
-
-            
-            commonprefix.append(c);
-        }
-
-        return commonprefix.toString();
+    System.out.println(median);
+    return median;
     }
 }
+
