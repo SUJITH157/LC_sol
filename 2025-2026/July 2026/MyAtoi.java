@@ -1,7 +1,8 @@
-public class MyAtoi {
+class Solution {
     public int myAtoi(String s) {
-        int ans = 0;
-        int n = 1;
+
+        long ans = 0;
+        int sign = 1;
         int i = 0;
 
         while (i < s.length() && s.charAt(i) == ' ') {
@@ -9,30 +10,35 @@ public class MyAtoi {
         }
 
         if (i < s.length() && s.charAt(i) == '-') {
-            n = -1;
+            sign = -1;
+            i++;
+        } else if (i < s.length() && s.charAt(i) == '+') {
             i++;
         }
-        else if (i < s.length() && s.charAt(i) == '+') {
-            i++;
-        }
 
-        for (; i < s.length(); i++) {
-            char a = s.charAt(i);
+        while (i < s.length()) {
 
-            if (a >= '0' && a <= '9') {
-                int digit = a - '0';
+            char ch = s.charAt(i);
 
-                if (ans > (Integer.MAX_VALUE - digit) / 10) {
-                    return n == 1 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
-                }
-
-                ans = ans * 10 + digit;
-            }
-            else {
+            if (ch < '0' || ch > '9') {
                 break;
             }
+
+            int digit = ch - '0';
+
+            ans = ans * 10 + digit;
+
+            if (sign == 1 && ans > Integer.MAX_VALUE) {
+                return Integer.MAX_VALUE;
+            }
+
+            if (sign == -1 && -ans < Integer.MIN_VALUE) {
+                return Integer.MIN_VALUE;
+            }
+
+            i++;
         }
 
-        return n * ans;
+        return (int) (sign * ans);
     }
-}  
+}
