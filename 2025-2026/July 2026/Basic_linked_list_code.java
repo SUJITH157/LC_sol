@@ -16,18 +16,18 @@ class Node {
     }
 }
 
-public class Main {
+public class Basic_linked_list_code {
     public static void main(String[] args) {
-        // Create an array
+        
         int[] arr = {2, 5, 8, 7};
 
-        // Create first node
+        
         Node y = new Node(arr[0]);
 
-        // Print memory reference of node
+       
         System.out.println(y);
 
-        // Print data stored in node
+       
         System.out.println(y.data);
     }
 }
