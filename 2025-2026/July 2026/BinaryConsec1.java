@@ -6,7 +6,7 @@ public class BinaryConsec1 {
 
         ArrayList<String> result = new ArrayList<>();
 
-        int total = 1 << n;
+        int total = 1 << n; //we can also use Math.pow(2, n) to calculate total number of binary strings of length n    
 
         for (int i = 0; i < total; i++) {
 
